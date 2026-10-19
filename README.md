@@ -1,17 +1,33 @@
-# photo_of_the_day_lazarev
+# Лабораторная работа 8
+Программа "фото дня" сделанная в flutter
 
-A new Flutter project.
+## Информация об авторе
+Лазарев Иван ИСП-242
 
-## Getting Started
+## Стек и версии
+Flutter 3.47.1, Dart 3.13.1, платформа: Web (Chrome), пакет: http.
 
-This project is a starting point for a Flutter application.
+## Скриншот
 
-A few resources to get you started if this is your first Flutter project:
+![Приложение](img/step2_lazarev(2).png)
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+# Как запустить
+## Запуск
+1. `git clone <url>`
+2. `cd photo_of_the_day`
+3. `flutter pub get`
+4. `flutter run -d chrome`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Что изучил
+Изучил асинхронность во флаттере и дарте, концепции Future, async, await, try/catch, http.get(), jsonDecode(), CircularProgressIndicator, Image.network(), ChoiceChip
+
+## Ответы на вопросы
+1. Future<T> — это объект-обещание. Обычное значение возвращается мгновенно, а Future возвращается сразу пустым, а реальный результат (или ошибку) отдает позже, когда завершится асинхронная операция.
+2. await приостанавливает выполнение текущей функции, пока завершается Future. Весь поток выполнения он не блокирует — интерфейс приложения остается отзывчивым и анимации не зависают.
+3. Два setState() нужны для индикатора загрузки:
+	• Первый включает «крутилку» (isLoading = true), чтобы пользователь видел начало загрузки.
+	• Второй выключает её (isLoading = false) и показывает скачанное фото, когда пришел ответ.
+4. Без скобок (_fetchPhoto) передается ссылка на функцию — кнопка сама вызовет её при нажатии. Со скобками (_fetchPhoto()) функция выполнится сразу же при сборке экрана, что приведет к ошибке или бесконечному циклу.
+5. Разница в источнике картинок:
+	• Image.network() скачивает картинку из Интернета по URL-ссылке в реальном времени.
+	• Image.asset() берет картинку из памяти устройства, так как она заранее вшита внутрь самого приложения.
